@@ -2,7 +2,7 @@
   <div class="PokemonList">
     <v-row>
       <v-col
-        xs="6"
+        cols="6"
         sm="4"
         md="3"
         lg="2"
@@ -20,13 +20,13 @@
           <v-responsive aspect-ratio="1">
             <v-layout justify-center>
               <v-img 
-                      max-height="130"
-                      max-width="130"
+                      max-height="120"
+                      max-width="120"
                       :src="imageUrl + pokemon.id + '.png'"
                       />
             </v-layout>
           <v-layout justify-center>
-            <v-card-title>No.{{ pokemon.id }} {{ pokemon.name }}</v-card-title>
+            <v-card-title style="font-size: 2.0vw">No.{{ pokemon.id }}<br>{{ pokemon.name }}</v-card-title>
           </v-layout>
           </v-responsive>
         </v-card>
@@ -45,7 +45,6 @@ export default {
       nextUrl: "",
       detailUrl: "",
       pokemons: [],
-      cnt: 0
     };
   },
   props: ["imageUrl", "apiUrl"],
@@ -56,7 +55,7 @@ export default {
         const res = await fetch(req);
         const json = await res.json();
         this.nextUrl = json.next;
-        json.results.forEach(async (pokemon) => {
+        json.results.forEach((pokemon) => {
           this.detailUrl = pokemon.url;
           pokemon.id = pokemon.url
             .split("/")
@@ -64,8 +63,9 @@ export default {
               return !!e;
             })
             .pop();
+
           if(this.pokemons.length < 151) {
-              this.pokemons.push(pokemon);
+            this.pokemons.push(pokemon);
           }
         });
       } catch (e) {
