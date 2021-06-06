@@ -26,7 +26,7 @@
                       />
             </v-layout>
           <v-layout justify-center>
-            <v-card-title style="font-size: 2.0vw">No.{{ pokemon.id }}<br>{{ pokemon.name }}</v-card-title>
+            <v-card-title>No.{{ pokemon.id }}<br>{{ pokemon.name }}</v-card-title>
           </v-layout>
           </v-responsive>
         </v-card>
@@ -109,3 +109,19 @@ export default {
   },
 };
 </script>
+
+<style>
+div.v-card__title {
+  font-size: 4.0vw
+}
+@media screen and (min-width: 600px) {
+  div.v-card__title {
+    font-size: 3.0vw;
+  }
+}
+@media screen and (min-width: 960px) {
+  div.v-card__title {
+    font-size: 2.0vw;
+  }
+}
+</style>
