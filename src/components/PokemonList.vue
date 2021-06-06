@@ -44,12 +44,18 @@ export default {
     return {
       nextUrl: "",
       detailUrl: "",
+      isLoading: false,
       pokemons: [],
     };
   },
   props: ["imageUrl", "apiUrl"],
   methods: {
     fetchData: async function () {
+      if(this.isLoading) {
+        return;
+      }
+      this.isLoading = true;
+
       let req = new Request(this.nextUrl);
       try {
         const res = await fetch(req);
@@ -67,6 +73,7 @@ export default {
           if(this.pokemons.length < 151) {
             this.pokemons.push(pokemon);
           }
+          this.isLoading = false;
         });
       } catch (e) {
         console.log("error!");
